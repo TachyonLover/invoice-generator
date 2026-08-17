@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using InvoiceGen.Services;
 
 namespace InvoiceGen
 {
@@ -22,7 +24,7 @@ namespace InvoiceGen
             InitializeComponent();
         }
 
-        private void AddItem_Click(object sender, RoutedEventArgs e)
+        private async void AddItem_Click(object sender, RoutedEventArgs e)
         {
             string description = DescriptionTextBox.Text;
 
@@ -53,8 +55,37 @@ namespace InvoiceGen
             DescriptionTextBox.Clear();
             QuantityTextBox.Clear();
             PriceTextBox.Clear();
+
+            ItemStatusText.Text = "Item added successfully!";
+
+            await Task.Delay(2500);
+
+            ItemStatusText.Text = "";
         }
 
+        private void GeneratePdf_Click(object sender, RoutedEventArgs e)
+        {
+            Invoice invoice = new Invoice
+            {
+                CustomerName = CustomerNameTextBox.Text,
+                CustomerAddress = CustomerAddressTextBox.Text,
+                Date = DateTime.Now,
+                Items = invoiceItems
+            };
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new()
+            {
+                FileName = "Invoice",
+                DefaultExt = ".pdf",
+                Filter = "PDF Documents (*.pdf)|*.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                PdfGenerator generator = new PdfGenerator();
+                generator.GenerateInvoice(invoice, saveFileDialog.FileName);
+            }
+        }
 
     }
 }
