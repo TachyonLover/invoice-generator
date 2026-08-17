@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoiceGen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1000">
     <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,55 +34,47 @@
 
         <Grid Grid.Row="2" Margin="0,20,0,20">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <StackPanel Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,10,0">
+
                 <TextBlock Text="Item"/>
+
                 <TextBox x:Name="DescriptionTextBox"
-             Height="30"
-             Margin="0,5,0,0"/>
-                <DataGrid x:Name="ItemsDataGrid"
-          AutoGenerateColumns="False"
-          Margin="0,20,0,0"
-          IsReadOnly="True">
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Item"
-                            Binding="{Binding Description}"
-                            Width="*"/>
-
-                        <DataGridTextColumn Header="Quantity"
-                            Binding="{Binding Quantity}"
-                            Width="100"/>
-
-                        <DataGridTextColumn Header="Unit Price"
-                            Binding="{Binding PricePerUnit}"
-                            Width="120"/>
-
-                        <DataGridTextColumn Header="Total"
-                            Binding="{Binding Total}"
-                            Width="120"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                 Height="30"
+                 Margin="0,5,0,0"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Margin="0,0,10,0">
+            <StackPanel Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0">
+
                 <TextBlock Text="Quantity"/>
+
                 <TextBox x:Name="QuantityTextBox"
-             Height="30"
-             Margin="0,5,0,0"/>
+                 Height="30"
+                 Margin="0,5,0,0"/>
             </StackPanel>
 
+            <StackPanel Grid.Row="0"
+                Grid.Column="2">
 
-            <StackPanel Grid.Column="2">
                 <TextBlock Text="Unit Price"/>
+
                 <TextBox x:Name="PriceTextBox"
-                Height="30"
-                Margin="0,5,0,0"/>
+                 Height="30"
+                 Margin="0,5,0,0"/>
 
                 <Button Content="Add Item"
                 Width="100"
@@ -90,22 +82,62 @@
                 HorizontalAlignment="Right"
                 Margin="0,10,0,0"
                 Click="AddItem_Click"/>
-
-
-
+                
+                <TextBlock x:Name="ItemStatusText"
+                Text=""
+                HorizontalAlignment="Right"
+                Margin="0,8,0,0"
+                FontSize="13"/>
+                
             </StackPanel>
 
+            <DataGrid x:Name="ItemsDataGrid"
+          Grid.Row="1"
+          Grid.Column="0"
+          Grid.ColumnSpan="3"
+          AutoGenerateColumns="False"
+          Margin="0,20,0,0"
+          IsReadOnly="True"
+          RowHeight="36"
+          ColumnHeaderHeight="38"
+          CanUserAddRows="False"
+          CanUserResizeRows="False"
+          HeadersVisibility="Column"
+          GridLinesVisibility="Horizontal">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Item"
+                            Binding="{Binding Description}"
+                            Width="*"/>
+
+                    <DataGridTextColumn Header="Quantity"
+                            Binding="{Binding Quantity}"
+                            Width="100"/>
+
+                    <DataGridTextColumn Header="Unit Price"
+                            Binding="{Binding PricePerUnit, StringFormat=C}"
+                            Width="120"/>
+
+                    <DataGridTextColumn Header="Total"
+                            Binding="{Binding Total, StringFormat=C}"
+                            Width="120"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
 
         </Grid>
 
 
 
 
-    <Button Grid.Row="3"
+        <Button Grid.Row="3"
                 Content="Generate PDF"
                 Width="150"
                 Height="40"
-                HorizontalAlignment="Right"/>
+                HorizontalAlignment="Right"
+                Click="GeneratePdf_Click"/>
         
     </Grid>
 </Window>
