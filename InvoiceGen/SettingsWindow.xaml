@@ -64,7 +64,6 @@
                       Margin="0,5,0,15"
                       SelectedIndex="0">
 
-                <ComboBoxItem Content="System"/>
                 <ComboBoxItem Content="Light"/>
                 <ComboBoxItem Content="Dark"/>
 

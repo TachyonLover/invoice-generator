@@ -12,6 +12,6 @@ namespace InvoiceGen.Models
         public string Email { get; set; } = "";
 
         public string Currency { get; set; } = "USD";
-        public string Appearance { get; set; } = "System";
+        public string Appearance { get; set; } = "Light";
     }
 }

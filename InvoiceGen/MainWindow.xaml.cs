@@ -84,7 +84,14 @@ namespace InvoiceGen
             if (saveFileDialog.ShowDialog() == true)
             {
                 PdfGenerator generator = new PdfGenerator();
-                generator.GenerateInvoice(invoice, saveFileDialog.FileName);
+                SettingsService settingsService = new SettingsService();
+                BusinessSettings settings = settingsService.LoadSettings();
+
+                generator.GenerateInvoice(
+                    invoice,
+                    settings,
+                    saveFileDialog.FileName
+                );
             }
         }
 

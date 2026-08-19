@@ -51,6 +51,8 @@ namespace InvoiceGen
             };
 
             settingsService.SaveSettings(settings);
+            ThemeService themeService = new ThemeService();
+            themeService.ApplyTheme(settings.Appearance);
 
             Close();
         }
