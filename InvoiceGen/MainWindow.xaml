@@ -5,34 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoiceGen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000">
+        Title="Invoice Generator"
+        Height="700"
+        Width="1000"
+        MinHeight="650"
+        MinWidth="900">
+
     <Grid Margin="30">
+
+        <!-- Main window rows -->
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Text="Invoice Generator"
-                   FontSize="28"
-                   FontWeight="Bold"
-                   Margin="0,0,0,20"/>
 
-        <StackPanel Grid.Row="1">
+        <!-- =========================
+             HEADER
+             ========================= -->
+
+        <Grid Grid.Row="0"
+              Margin="0,0,0,20">
+
+            <TextBlock Text="Invoice Generator"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+
+            <Button Content="Settings"
+                    Width="90"
+                    Height="32"
+                    HorizontalAlignment="Right"
+                    Click="Settings_Click"/>
+
+        </Grid>
+
+
+        <!-- =========================
+             INVOICE DETAILS
+             ========================= -->
+
+        <Grid Grid.Row="1"
+              Margin="0,0,0,20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Invoice Number -->
+
+            <StackPanel Grid.Column="0"
+                        Margin="0,0,20,0">
+
+                <TextBlock Text="Invoice Number"/>
+
+                <TextBox x:Name="InvoiceNumberTextBox"
+                         Height="30"
+                         Margin="0,5,0,0"/>
+
+            </StackPanel>
+
+
+            <!-- Invoice Date -->
+
+            <StackPanel Grid.Column="1">
+
+                <TextBlock Text="Invoice Date"/>
+
+                <DatePicker x:Name="InvoiceDatePicker"
+                            Height="30"
+                            Margin="0,5,0,0"/>
+
+            </StackPanel>
+
+        </Grid>
+
+
+        <!-- =========================
+             CUSTOMER INFORMATION
+             ========================= -->
+
+        <StackPanel Grid.Row="2">
+
             <TextBlock Text="Customer Name"/>
+
             <TextBox x:Name="CustomerNameTextBox"
                      Height="30"
                      Margin="0,5,0,15"/>
 
             <TextBlock Text="Customer Address"/>
+
             <TextBox x:Name="CustomerAddressTextBox"
                      Height="30"
                      Margin="0,5,0,15"/>
+
         </StackPanel>
 
-        <Grid Grid.Row="2" Margin="0,20,0,20">
+
+        <!-- =========================
+             INVOICE ITEMS
+             ========================= -->
+
+        <Grid Grid.Row="3"
+              Margin="0,20,0,20">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -45,83 +124,100 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
+
+            <!-- Item Description -->
+
             <StackPanel Grid.Row="0"
-                Grid.Column="0"
-                Margin="0,0,10,0">
+                        Grid.Column="0"
+                        Margin="0,0,10,0">
 
                 <TextBlock Text="Item"/>
 
                 <TextBox x:Name="DescriptionTextBox"
-                 Height="30"
-                 Margin="0,5,0,0"/>
+                         Height="30"
+                         Margin="0,5,0,0"/>
+
             </StackPanel>
 
+
+            <!-- Quantity -->
+
             <StackPanel Grid.Row="0"
-                Grid.Column="1"
-                Margin="0,0,10,0">
+                        Grid.Column="1"
+                        Margin="0,0,10,0">
 
                 <TextBlock Text="Quantity"/>
 
                 <TextBox x:Name="QuantityTextBox"
-                 Height="30"
-                 Margin="0,5,0,0"/>
+                         Height="30"
+                         Margin="0,5,0,0"/>
+
             </StackPanel>
 
+
+            <!-- Unit Price / Add Item -->
+
             <StackPanel Grid.Row="0"
-                Grid.Column="2">
+                        Grid.Column="2">
 
                 <TextBlock Text="Unit Price"/>
 
                 <TextBox x:Name="PriceTextBox"
-                 Height="30"
-                 Margin="0,5,0,0"/>
+                         Height="30"
+                         Margin="0,5,0,0"/>
 
                 <Button Content="Add Item"
-                Width="100"
-                Height="30"
-                HorizontalAlignment="Right"
-                Margin="0,10,0,0"
-                Click="AddItem_Click"/>
-                
+                        Width="100"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,0,0"
+                        Click="AddItem_Click"/>
+
+                <!-- Appears briefly after successfully adding an item -->
                 <TextBlock x:Name="ItemStatusText"
-                Text=""
-                HorizontalAlignment="Right"
-                Margin="0,8,0,0"
-                FontSize="13"/>
-                
+                           Text=""
+                           HorizontalAlignment="Right"
+                           Margin="0,8,0,0"
+                           FontSize="13"/>
+
             </StackPanel>
 
+
+            <!-- =========================
+                 ADDED ITEMS TABLE
+                 ========================= -->
+
             <DataGrid x:Name="ItemsDataGrid"
-          Grid.Row="1"
-          Grid.Column="0"
-          Grid.ColumnSpan="3"
-          AutoGenerateColumns="False"
-          Margin="0,20,0,0"
-          IsReadOnly="True"
-          RowHeight="36"
-          ColumnHeaderHeight="38"
-          CanUserAddRows="False"
-          CanUserResizeRows="False"
-          HeadersVisibility="Column"
-          GridLinesVisibility="Horizontal">
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      AutoGenerateColumns="False"
+                      Margin="0,20,0,0"
+                      IsReadOnly="True"
+                      RowHeight="36"
+                      ColumnHeaderHeight="38"
+                      CanUserAddRows="False"
+                      CanUserResizeRows="False"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal">
 
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Item"
-                            Binding="{Binding Description}"
-                            Width="*"/>
+                                        Binding="{Binding Description}"
+                                        Width="*"/>
 
                     <DataGridTextColumn Header="Quantity"
-                            Binding="{Binding Quantity}"
-                            Width="100"/>
+                                        Binding="{Binding Quantity}"
+                                        Width="100"/>
 
                     <DataGridTextColumn Header="Unit Price"
-                            Binding="{Binding PricePerUnit, StringFormat=C}"
-                            Width="120"/>
+                                        Binding="{Binding PricePerUnit, StringFormat=C}"
+                                        Width="120"/>
 
                     <DataGridTextColumn Header="Total"
-                            Binding="{Binding Total, StringFormat=C}"
-                            Width="120"/>
+                                        Binding="{Binding Total, StringFormat=C}"
+                                        Width="120"/>
 
                 </DataGrid.Columns>
 
@@ -130,14 +226,17 @@
         </Grid>
 
 
+        <!-- =========================
+             GENERATE PDF
+             ========================= -->
 
-
-        <Button Grid.Row="3"
+        <Button Grid.Row="4"
                 Content="Generate PDF"
                 Width="150"
                 Height="40"
                 HorizontalAlignment="Right"
                 Click="GeneratePdf_Click"/>
-        
+
     </Grid>
+
 </Window>

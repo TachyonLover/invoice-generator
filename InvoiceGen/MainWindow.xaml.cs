@@ -69,7 +69,8 @@ namespace InvoiceGen
             {
                 CustomerName = CustomerNameTextBox.Text,
                 CustomerAddress = CustomerAddressTextBox.Text,
-                Date = DateTime.Now,
+                InvoiceNumber = InvoiceNumberTextBox.Text,
+                Date = InvoiceDatePicker.SelectedDate ?? DateTime.Today,
                 Items = invoiceItems
             };
 
@@ -85,6 +86,14 @@ namespace InvoiceGen
                 PdfGenerator generator = new PdfGenerator();
                 generator.GenerateInvoice(invoice, saveFileDialog.FileName);
             }
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+
+            settingsWindow.Owner = this;
+            settingsWindow.ShowDialog();
         }
 
     }
