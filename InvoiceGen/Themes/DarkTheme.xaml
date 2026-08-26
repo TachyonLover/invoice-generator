@@ -7,5 +7,87 @@
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#2B2B2B"/>
     <SolidColorBrush x:Key="ControlForegroundBrush" Color="#F5F5F5"/>
     <SolidColorBrush x:Key="ControlBorderBrush" Color="#555555"/>
+	<Style TargetType="TextBox">
+		<Setter Property="Background"
+				Value="{DynamicResource ControlBackgroundBrush}"/>
+
+		<Setter Property="Foreground"
+				Value="{DynamicResource ControlForegroundBrush}"/>
+
+		<Setter Property="BorderBrush"
+				Value="{DynamicResource ControlBorderBrush}"/>
+
+		<Setter Property="CaretBrush"
+				Value="{DynamicResource ControlForegroundBrush}"/>
+	</Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Background"
+            Value="{DynamicResource ControlBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource ControlBorderBrush}"/>
+
+        <Setter Property="RowBackground"
+            Value="{DynamicResource ControlBackgroundBrush}"/>
+
+        <Setter Property="GridLinesVisibility"
+            Value="Horizontal"/>
+
+        <Setter Property="HorizontalGridLinesBrush"
+            Value="{DynamicResource ControlBorderBrush}"/>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background"
+            Value="#242424"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource ControlBorderBrush}"/>
+    </Style>
+
+    <Style TargetType="DataGridRow">
+        <Setter Property="Background"
+            Value="{DynamicResource ControlBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="Background"
+            Value="{DynamicResource ControlBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource ControlBorderBrush}"/>
+    </Style>
+
+    <Style TargetType="DatePickerTextBox">
+        <Setter Property="Background"
+            Value="{DynamicResource ControlBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource ControlBorderBrush}"/>
+
+        <Setter Property="CaretBrush"
+            Value="{DynamicResource ControlForegroundBrush}"/>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Foreground" Value="#1A1A1A"/>
+    </Style>
+
 
 </ResourceDictionary>
