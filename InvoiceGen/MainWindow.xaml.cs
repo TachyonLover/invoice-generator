@@ -29,21 +29,27 @@ namespace InvoiceGen
         {
             string description = DescriptionTextBox.Text;
 
-            if (!int.TryParse(QuantityTextBox.Text, out int quantity))
+            if (string.IsNullOrWhiteSpace(description))
             {
-                MessageBox.Show("Please enter a valid quantity.");
+                ItemStatusText.Text = "Enter an item description.";
                 return;
             }
 
-            if (!decimal.TryParse(PriceTextBox.Text, out decimal price))
+            if (!int.TryParse(QuantityTextBox.Text, out int quantity) || quantity <= 0)
             {
-                MessageBox.Show("Please enter a valid price.");
+                ItemStatusText.Text = "Invalid quantity.";
+                return;
+            }
+
+            if (!decimal.TryParse(PriceTextBox.Text, out decimal price) || price < 0)
+            {
+                ItemStatusText.Text = "Invalid price.";
                 return;
             }
 
             InvoiceItem item = new InvoiceItem
             {
-                Description = description,
+                Description = description.Trim(),
                 Quantity = quantity,
                 PricePerUnit = price
             };
@@ -66,6 +72,40 @@ namespace InvoiceGen
 
         private void GeneratePdf_Click(object sender, RoutedEventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(InvoiceNumberTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Invoice number required.",
+                    "Missing Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(CustomerNameTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Customer name required.",
+                    "Missing Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (invoiceItems.Count == 0)
+            {
+                MessageBox.Show(
+                    "Add at least one item.",
+                    "Missing Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                return;
+            }
+
             Invoice invoice = new Invoice
             {
                 CustomerName = CustomerNameTextBox.Text,
