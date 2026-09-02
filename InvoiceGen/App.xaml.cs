@@ -11,8 +11,10 @@ namespace InvoiceGen
     /// </summary>
     public partial class App : Application
     {
-        public App()
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             QuestPDF.Settings.License = LicenseType.Community;
 
             SettingsService settingsService = new SettingsService();

@@ -23,6 +23,17 @@ namespace InvoiceGen
         public MainWindow()
         {
             InitializeComponent();
+
+            ItemsDataGrid.ItemsSource = invoiceItems;
+            InvoiceDatePicker.SelectedDate = DateTime.Today;
+
+            SettingsService settingsService = new SettingsService();
+            BusinessSettings settings = settingsService.LoadSettings();
+
+            CurrencyConverter converter =
+                (CurrencyConverter)FindResource("CurrencyConverter");
+
+            converter.Currency = settings.Currency;
         }
 
         private async void AddItem_Click(object sender, RoutedEventArgs e)
