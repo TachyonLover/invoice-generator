@@ -77,7 +77,7 @@ namespace InvoiceGen.Services
 
                                         infoRow.RelativeItem()
                                             .AlignRight()
-                                            .Text(invoice.Total.ToString("C"))
+                                            .Text(CurrencyFormatter.Format(invoice.Total, settings.Currency))
                                             .Bold();
                                     });
                             });
@@ -187,7 +187,7 @@ namespace InvoiceGen.Services
                                     .PaddingVertical(10)
                                     .PaddingHorizontal(8)
                                     .AlignRight()
-                                    .Text(item.PricePerUnit.ToString("C"));
+                                    .Text(CurrencyFormatter.Format(item.PricePerUnit, settings.Currency));
 
                                 table.Cell()
                                     .BorderBottom(1)
@@ -195,7 +195,7 @@ namespace InvoiceGen.Services
                                     .PaddingVertical(10)
                                     .PaddingHorizontal(8)
                                     .AlignRight()
-                                    .Text(item.Total.ToString("C"));
+                                    .Text(CurrencyFormatter.Format(item.Total, settings.Currency));
                             }
                         });
 
@@ -221,7 +221,7 @@ namespace InvoiceGen.Services
 
                                         row.RelativeItem()
                                             .AlignRight()
-                                            .Text(invoice.Total.ToString("C"));
+                                            .Text(CurrencyFormatter.Format(invoice.Total, settings.Currency));
                                     });
 
                                 totalColumn.Item()
@@ -235,7 +235,7 @@ namespace InvoiceGen.Services
 
                                         row.RelativeItem()
                                             .AlignRight()
-                                            .Text(invoice.Total.ToString("C"))
+                                            .Text(CurrencyFormatter.Format(invoice.Total, settings.Currency))
                                             .FontSize(13)
                                             .Bold();
                                     });

@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading.Tasks;
 using InvoiceGen.Services;
+using InvoiceGen.Converters;
 
 namespace InvoiceGen
 {
@@ -98,9 +99,20 @@ namespace InvoiceGen
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
-
             settingsWindow.Owner = this;
             settingsWindow.ShowDialog();
+
+            // Reload settings after the settings window closes
+            SettingsService settingsService = new SettingsService();
+            BusinessSettings settings = settingsService.LoadSettings();
+
+            CurrencyConverter converter =
+                (CurrencyConverter)FindResource("CurrencyConverter");
+
+            converter.Currency = settings.Currency;
+
+            // Force the DataGrid to redraw using the new currency
+            ItemsDataGrid.Items.Refresh();
         }
 
     }
