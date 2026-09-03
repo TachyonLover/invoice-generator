@@ -166,5 +166,19 @@ namespace InvoiceGen
             ItemsDataGrid.Items.Refresh();
         }
 
+        private void RemoveItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ItemsDataGrid.SelectedItem is InvoiceItem selectedItem)
+            {
+                invoiceItems.Remove(selectedItem);
+                ItemsDataGrid.Items.Refresh();
+                ItemStatusText.Text = "Item removed.";
+            }
+            else
+            {
+                ItemStatusText.Text = "Select an item first.";
+            }
+        }
+
     }
 }
