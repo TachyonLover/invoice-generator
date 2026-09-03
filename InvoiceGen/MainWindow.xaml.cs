@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Threading.Tasks;
 using InvoiceGen.Services;
 using InvoiceGen.Converters;
+using System.Diagnostics;
 
 namespace InvoiceGen
 {
@@ -144,7 +145,14 @@ namespace InvoiceGen
                     settings,
                     saveFileDialog.FileName
                 );
+
             }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = saveFileDialog.FileName,
+                UseShellExecute = true
+            });
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
