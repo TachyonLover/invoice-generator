@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using InvoiceGen.Models;
 using InvoiceGen.Services;
+
+
 namespace InvoiceGen
 {
     /// <summary>
@@ -18,17 +11,19 @@ namespace InvoiceGen
     /// </summary>
     public partial class SettingsWindow : Window
     {
+
+        private readonly SettingsService settingsService = new SettingsService();
+
         public SettingsWindow()
         {
             InitializeComponent();
             LoadSettings();
         }
-        private readonly SettingsService settingsService = new SettingsService();
 
         private void SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             string currency = "USD";
-            string appearance = "System";
+            string appearance = "Light";
 
             if (CurrencyComboBox.SelectedItem is ComboBoxItem currencyItem)
             {
@@ -37,15 +32,15 @@ namespace InvoiceGen
 
             if (AppearanceComboBox.SelectedItem is ComboBoxItem appearanceItem)
             {
-                appearance = appearanceItem.Content.ToString() ?? "System";
+                appearance = appearanceItem.Content.ToString() ?? "Light";
             }
 
             BusinessSettings settings = new BusinessSettings
             {
-                BusinessName = BusinessNameTextBox.Text,
-                Address = BusinessAddressTextBox.Text,
-                Phone = PhoneTextBox.Text,
-                Email = EmailTextBox.Text,
+                BusinessName = BusinessNameTextBox.Text.Trim(),
+                Address = BusinessAddressTextBox.Text.Trim(),
+                Phone = PhoneTextBox.Text.Trim(),
+                Email = EmailTextBox.Text.Trim(),
                 Currency = currency,
                 Appearance = appearance
             };

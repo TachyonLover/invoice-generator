@@ -1,19 +1,16 @@
 ﻿using InvoiceGen.Models;
 using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InvoiceGen.Services
 {
     public class PdfGenerator
     {
-        public void GenerateInvoice(
-    Invoice invoice,
-    BusinessSettings settings,
-    string filePath)
+
+    public void GenerateInvoice(
+        Invoice invoice,
+        BusinessSettings settings,
+        string filePath)
+
         {
             Document.Create(container =>
             {

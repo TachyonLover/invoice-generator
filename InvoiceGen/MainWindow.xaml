@@ -17,8 +17,8 @@
 
     <Window.Resources>
         <converters:CurrencyConverter
-        x:Key="CurrencyConverter"
-        Currency="USD"/>
+            x:Key="CurrencyConverter"
+            Currency="USD"/>
     </Window.Resources>
 
     <Grid Margin="30">
@@ -31,7 +31,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
 
         <!-- =========================
              HEADER
@@ -52,8 +51,7 @@
                     Click="Settings_Click"/>
 
         </Grid>
-
-
+        
         <!-- =========================
              INVOICE DETAILS
              ========================= -->
@@ -79,7 +77,6 @@
 
             </StackPanel>
 
-
             <!-- Invoice Date -->
 
             <StackPanel Grid.Column="1">
@@ -93,7 +90,6 @@
             </StackPanel>
 
         </Grid>
-
 
         <!-- =========================
              CUSTOMER INFORMATION
@@ -115,7 +111,6 @@
 
         </StackPanel>
 
-
         <!-- =========================
              INVOICE ITEMS
              ========================= -->
@@ -134,7 +129,6 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-
             <!-- Item Description -->
 
             <StackPanel Grid.Row="0"
@@ -149,7 +143,6 @@
 
             </StackPanel>
 
-
             <!-- Quantity -->
 
             <StackPanel Grid.Row="0"
@@ -163,7 +156,6 @@
                          Margin="0,5,0,0"/>
 
             </StackPanel>
-
 
             <!-- Unit Price / Add Item -->
 
@@ -183,7 +175,6 @@
                         Margin="0,10,0,0"
                         Click="AddItem_Click"/>
 
-                <!-- Appears briefly after successfully adding an item -->
                 <TextBlock x:Name="ItemStatusText"
                            Text=""
                            HorizontalAlignment="Right"
@@ -191,7 +182,6 @@
                            FontSize="13"/>
 
             </StackPanel>
-
 
             <!-- =========================
                  ADDED ITEMS TABLE
@@ -237,9 +227,6 @@
 
         </Grid>
 
-        
-
-
         <!-- =========================
              GENERATE PDF
              ========================= -->
@@ -247,21 +234,19 @@
         <StackPanel Grid.Row="4">
 
             <Button Content="Remove Selected"
-                Width="120"
-                Height="30"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,0"
-                Click="RemoveItem_Click"/>
+                    Width="120"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Click="RemoveItem_Click"/>
 
-            <Button 
-                Content="Generate PDF"
-                Width="150"
-                Height="40"
-                Margin="0,10,0,0"
-                HorizontalAlignment="Right"
-                Click="GeneratePdf_Click"/>
+            <Button Content="Generate PDF"
+                    Width="150"
+                    Height="40"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Right"
+                    Click="GeneratePdf_Click"/>
 
-        
+
 
         </StackPanel>
 

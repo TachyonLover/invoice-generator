@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Data;
 using InvoiceGen.Services;
 

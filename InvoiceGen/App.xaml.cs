@@ -1,14 +1,9 @@
 ﻿using InvoiceGen.Services;
 using QuestPDF.Infrastructure;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace InvoiceGen
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
@@ -24,7 +19,5 @@ namespace InvoiceGen
 
             themeService.ApplyTheme(settings.Appearance);
         }
-
     }
-
 }

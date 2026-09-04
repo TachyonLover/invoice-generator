@@ -1,18 +1,8 @@
 ﻿using InvoiceGen.Models;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Threading.Tasks;
 using InvoiceGen.Services;
 using InvoiceGen.Converters;
 using System.Diagnostics;
+using System.Windows;
 
 namespace InvoiceGen
 {
@@ -120,9 +110,9 @@ namespace InvoiceGen
 
             Invoice invoice = new Invoice
             {
-                CustomerName = CustomerNameTextBox.Text,
-                CustomerAddress = CustomerAddressTextBox.Text,
-                InvoiceNumber = InvoiceNumberTextBox.Text,
+                CustomerName = CustomerNameTextBox.Text.Trim(),
+                CustomerAddress = CustomerAddressTextBox.Text.Trim(),
+                InvoiceNumber = InvoiceNumberTextBox.Text.Trim(),
                 Date = InvoiceDatePicker.SelectedDate ?? DateTime.Today,
                 Items = invoiceItems
             };
@@ -146,13 +136,14 @@ namespace InvoiceGen
                     saveFileDialog.FileName
                 );
 
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = saveFileDialog.FileName,
+                    UseShellExecute = true
+                });
+
             }
 
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = saveFileDialog.FileName,
-                UseShellExecute = true
-            });
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

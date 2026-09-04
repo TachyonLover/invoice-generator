@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InvoiceGen.Models
+﻿namespace InvoiceGen.Models
 {
     public class Invoice
     {
