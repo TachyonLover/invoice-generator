@@ -9,6 +9,10 @@ A lightweight desktop invoice generator built with C# and WPF.
 
 InvoiceGen provides a simple interface for creating itemized invoices, managing business information, and exporting professional PDF invoices. The application was built as a practical desktop tool while exploring C#, WPF, persistent application settings, and PDF generation.
 
+## Demo
+
+https://github.com/user-attachments/assets/d4adacb4-907a-4469-9d24-2c8a8ce5466c
+
 ## Preview
 
 ![InvoiceGen Main Window](InvoiceGen/Assets/InvoiceGenMain.png)
