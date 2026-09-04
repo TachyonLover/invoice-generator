@@ -80,7 +80,7 @@ When an invoice is ready, InvoiceGen passes the invoice and saved business infor
 1. Clone the repository:
 
    ```bash
-   git clone <your-repository-url>
+   git clone <https://github.com/TachyonLover/invoice-generator.git>
    ```
 
 2. Open the solution in Visual Studio.
